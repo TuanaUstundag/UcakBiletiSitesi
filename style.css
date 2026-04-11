@@ -1,0 +1,157 @@
+/* Genel Ayarlar */
+:root {
+    --primary-blue: #228be6;
+    --grey-light: #f1f3f5;
+    --grey-dark: #868e96;
+    --empty-green: #2ecc71; /* İstenen yeşil */
+    --occupied-red: #e74c3c; /* İstenen kırmızı */
+    --selected-yellow: #f1c40f; /* Seçili sarı */
+    --background: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--background);
+    color: #333;
+}
+
+.main-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sol Alan */
+.selection-area {
+    flex: 2;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+}
+
+.header h1 {
+    color: #0c3459;
+    margin: 10px 0;
+}
+
+.header p {
+    color: var(--grey-dark);
+    font-size: 0.9rem;
+}
+
+.cabin-layout {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.fuselage {
+    background-color: var(--grey-light);
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.seating-plan {
+    display: grid;
+    /* İki koltuk - 40px koridor - İki koltuk */
+    grid-template-columns: repeat(2, 55px) 40px repeat(2, 55px); 
+    gap: 15px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+/* Koltuk Tasarımı */
+.seat {
+    width: 50px;
+    height: 65px;
+    border-radius: 12px; /* Daha yuvarlak köşeler */
+    border: none; /* Kenarlığı kaldırıp gölge ekleyelim */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.seat:hover:not(.occupied) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Durum Renkleri (Hafifletilmiş tonlar) */
+.seat.empty {
+    background-color: #ebfbee;
+    color: #2f9e44;
+}
+.seat.occupied {
+    background-color: #ffe3e3;
+    color: #e03131;
+    cursor: not-allowed;
+}
+.seat.selected {
+    background-color: #fff3bf !important; /* Daha yumuşak sarı */
+    border: 2px solid #fab005 !important;
+    box-shadow: 0 0 12px rgba(241, 196, 15, 0.5); /* Parlama efekti */
+    transform: scale(1.05); /* Çok hafif büyüme */
+}
+
+.seat-number {
+    font-weight: bold;
+    color: #0c3459;
+}
+
+.seat-score {
+    font-size: 0.75rem;
+    color: var(--grey-dark);
+}
+
+/* Koltuğun üzerine gelince bilgi kutusu */
+.seat:hover::after {
+    content: "Cam Kenarı - 1500 TL"; /* Şimdilik statik, sonra JS ile dinamikleşir */
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* Sağ Alan (Özet) */
+.summary-area {
+    flex: 1;
+    background-color: var(--grey-light);
+    padding: 2rem;
+    border-left: 1px solid #ddd;
+    position: relative;
+}
+
+.summary-area h2 {
+    color: #0c3459;
+}
+
+.booking-summary p {
+    color: var(--grey-dark);
+}
+
+.summary-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+.chair-icon-corner {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    opacity: 0.2;
+}
