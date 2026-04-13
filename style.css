@@ -97,6 +97,18 @@ body {
     box-shadow: 0 0 12px rgba(241, 196, 15, 0.5); /* Parlama efekti */
     transform: scale(1.05); /* Çok hafif büyüme */
 }
+/* 3 yıldız altı koltuklar (Düşük Puanlı) */
+.seat.low-rated {
+    background-color: #fff3cd !important; /* Pastel turuncu/sarı */
+    color: #856404 !important;
+    border: 2px solid #ffeeba !important;
+}
+
+.seat.low-rated:hover:not(.occupied) {
+    background-color: #ffe8a1 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
 
 .seat-number {
     font-weight: bold;
@@ -108,21 +120,6 @@ body {
     color: var(--grey-dark);
 }
 
-/* Koltuğun üzerine gelince bilgi kutusu */
-.seat:hover::after {
-    content: "Cam Kenarı - 1500 TL"; /* Şimdilik statik, sonra JS ile dinamikleşir */
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    white-space: nowrap;
-    z-index: 10;
-}
 
 /* Sağ Alan (Özet) */
 .summary-area {

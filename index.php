@@ -611,7 +611,7 @@ $ucuslar = $sorgu->fetchAll(PDO::FETCH_ASSOC);
             <?= isset($ucus['fiyat']) ? number_format($ucus['fiyat'], 0, ',', '.') . ' ₺' : '—' ?>
           </div>
         </div>
-        <button class="fl-btn">Koltuk Seç →</button>
+        <a href="ucus.php?id=<?= $ucus['id'] ?>" class="fl-btn" style="text-decoration:none; display:inline-flex; align-items:center;">Koltuk Seç →</a>
       </div>
     </div>
     <?php endforeach; ?>
