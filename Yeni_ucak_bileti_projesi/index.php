@@ -1,3 +1,4 @@
+<?php if (session_status() === PHP_SESSION_NONE) session_start(); ?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -603,7 +604,7 @@ try {
 ?>
 
 <nav>
-  <a class="logo" href="#">
+  <a class="logo" href="index.php">
     <div class="logo-icon">✈</div>
     UçuşBul
   </a>
@@ -612,6 +613,29 @@ try {
     <a href="#features">Neden Biz?</a>
     <a href="#survey">Değerlendirme</a>
   </div>
+
+  <!-- Giriş durumuna göre nav sağ tarafı -->
+  <?php if (isset($_SESSION['kullanici_id'])): ?>
+    <!-- Giriş yapılmış: kullanıcı adı + çıkış butonu -->
+    <div style="display:flex; align-items:center; gap:14px;">
+      <span style="color:rgba(255,255,255,0.80); font-size:14px; font-weight:600;">
+        👤 <?= htmlspecialchars($_SESSION['kullanici_adi']) ?>
+      </span>
+      <a href="kullanici_cikis.php" class="nav-btn" style="background:transparent; border:1.5px solid rgba(255,255,255,0.3); color:rgba(255,255,255,0.8);">
+        Çıkış
+      </a>
+    </div>
+  <?php else: ?>
+    <!-- Giriş yapılmamış: Giriş Yap + Üye Ol -->
+    <div style="display:flex; align-items:center; gap:10px;">
+      <a href="kullanici_giris.php" class="nav-btn" style="background:transparent; border:1.5px solid rgba(255,255,255,0.3); color:rgba(255,255,255,0.8);">
+        Giriş Yap
+      </a>
+      <a href="register.php" class="nav-btn">
+        Üye Ol
+      </a>
+    </div>
+  <?php endif; ?>
 </nav>
 
 <!-- ====== HERO ====== -->
